@@ -3,6 +3,9 @@ const bodyParser = require("body-parser");
 const request = require("request");
 const https = require("https");
 const app = express();
+require('dotenv').config();
+
+console.log(process.env);
 
     app.use(express.static("public"));
     app.use(bodyParser.urlencoded({extended: true}));
@@ -15,8 +18,9 @@ const app = express();
         var firstName = req.body.fname;
         var lastName = req.body.lname;
         var email = req.body.email;
-
+        const api_key1 = process.env.API_KEY;
         console.log(firstName, lastName, email);
+        console.log(api_key1);
         var data = {
             members: [
                 {
@@ -33,11 +37,12 @@ const app = express();
         const jsonData = JSON.stringify(data);
 
         const url = "https://us21.api.mailchimp.com/3.0/lists/9dacd66e16";
-
+        console.log(api_key1)
         const options = {
             method: "POST",
-            auth: "new:f72d50a0ceab3b644ec376279bef66fb-us21"
+            auth: "new_key:"+api_key1
         }
+        console.log(options);
 
         const request = https.request(url, options, function(response){
             if (response.statusCode ===200) {
