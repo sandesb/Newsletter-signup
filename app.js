@@ -62,14 +62,8 @@ const app = express();
         res.redirect("/")
     })
 
-    app.listen(3001, function() {
+    app.listen(process.env.PORT || 3001, function() {
         console.log("Server is running on port 3000.");
     }); 
 
-    // API Key: 
-    // 50f693cf8bef4f586046d4659160c976-us21
-    // f72d50a0ceab3b644ec376279bef66fb-us21
-
-
-    // ListId:
-    // 9dacd66e16
+   
